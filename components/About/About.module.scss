@@ -1,0 +1,282 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.about {
+    padding: 80px 20px;
+    background-color: $bg-color;
+    border-top: 1px solid rgba($text-main, 0.1);
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+.sectionTitle {
+    font-family: var(--font-logo), sans-serif !important;
+    font-weight: 100;
+    font-size: clamp(2.8rem, 10vw, 6.5rem);
+    line-height: 1.1;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: $text-main;
+    max-width: 1000px;
+    margin: 0 0 30px 0; // Трохи зменшив відступ до тексту
+    width: 100%;
+    text-align: center;
+}
+
+// УНІВЕРСАЛЬНИЙ СТИЛЬ ТЕКСТУ
+%bodyText {
+    font-family: var(--font-body), sans-serif !important;
+    font-size: 1.3rem;
+    color: $text-main;
+    line-height: 1.5;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+
+    @include respond-to(mobile) {
+        font-size: 1.1rem;
+    }
+}
+
+// ВСТУПНИЙ ТЕКСТ (Зверху)
+.introText {
+    max-width: 700px;
+    text-align: center;
+    margin-bottom: 50px; // Відступ до фотографії
+
+    p {
+        @extend %bodyText;
+        margin-bottom: 15px;
+    }
+
+    .accentText {
+        font-weight: 600;
+        color: $accent-color;
+    }
+}
+
+// ГОЛОВНЕ ФОТО
+.imageWrapper {
+    width: 100%;
+    max-width: 450px; 
+    aspect-ratio: 4 / 5; 
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 80px; // Збільшив відступ до наступних блоків
+
+    .photo {
+        object-fit: cover; 
+        object-position: center; 
+    }
+}
+
+// ШАХОВІ БЛОКИ (Ряди)
+.rowBlock {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    width: 100%;
+    margin-bottom: 80px;
+
+    @include respond-to(mobile) {
+        flex-direction: column; 
+        gap: 30px;
+        margin-bottom: 60px;
+    }
+}
+
+// Модифікатор для Текст-Картинка
+.rowReverse {
+    .rowText {
+        text-align: left; 
+    }
+
+    @include respond-to(mobile) {
+        display: flex;
+        flex-direction: column-reverse; 
+        
+        .rowText {
+            text-align: center;
+        }
+    }
+}
+
+.rowImage {
+    width: 50%;
+    max-width: 350px;
+    aspect-ratio: 1 / 1; 
+    position: relative;
+    overflow: hidden;
+
+    .photo {
+        object-fit: cover;
+    }
+
+    @include respond-to(mobile) {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+.rowText {
+    width: 50%;
+    text-align: left;
+
+    p {
+        @extend %bodyText;
+        margin-bottom: 10px;
+    }
+
+    @include respond-to(mobile) {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* === СТИЛІ ДЛЯ СПИСКУ ЗАПИТІВ === */
+.queriesList {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start; 
+
+    li {
+        @extend %bodyText; 
+        font-weight: 300; 
+        text-transform: none; 
+        color: rgba($text-main, 0.85); 
+        
+        position: relative;
+        padding-left: 20px; 
+        text-align: left; 
+
+        &::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0.6em; 
+          width: 6px;
+          height: 6px;
+          background-color: $accent-color; 
+          border-radius: 50%; 
+          z-index: 1;
+        }
+    }
+
+    @include respond-to(mobile) {
+        align-items: center; 
+        width: fit-content; 
+        margin: 15px auto 0;
+        padding-left: 0;
+    }
+}
+
+// ФІНАЛЬНИЙ ТЕКСТ
+.finalText {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 80px;
+    padding: 40px 20px;
+    background-color: rgba($text-main, 0.02);
+    border: 1px solid rgba($text-main, 0.1);
+
+    p {
+        @extend %bodyText;
+        margin-bottom: 10px;
+        font-weight: 500;
+
+        &:last-child {
+            margin-bottom: 0;
+            color: $accent-color;
+        }
+    }
+}
+
+// ПЛАШКИ
+.statsContainer {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+
+    @include respond-to(mobile) {
+        flex-direction: column; 
+        gap: 15px;
+    }
+}
+
+.statBox {
+    flex: 1;
+    max-width: 300px;
+    padding: 40px 20px;
+    border: 1px solid rgba($text-main, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transition: all 0.3s ease;
+
+    &:hover {
+        border-color: $accent-color;
+        transform: translateY(-5px);
+        background-color: rgba($text-main, 0.02);
+    }
+
+    @include respond-to(mobile) {
+        max-width: 100%; 
+    }
+}
+
+.statValue {
+    font-family: var(--font-logo), sans-serif;
+    font-size: 3rem;
+    font-weight: 200;
+    color: $accent-color;
+    margin-bottom: 15px;
+    line-height: 1;
+}
+
+.textStatValue {
+    font-size: 1.4rem;
+    line-height: 1.3;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: $text-main;
+}
+
+.statLabel {
+    font-family: var(--font-body), sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba($text-main, 0.7);
+}
+
+.about {
+    padding: 80px 20px;
+    background-color: $bg-color;
+    border-top: 1px solid rgba($text-main, 0.1);
+    
+    // ОСЬ ЦЕЙ РЯДОК: Каже браузеру зупинитись за 100px до ID
+    scroll-margin-top: 100px; 
+}
+
+.anchor {
+    position: absolute;
+    top: -100px; // Робимо відступ під твій фіксований Хедер
+    left: 0;
+    visibility: hidden; // Щоб не заважав візуально
+}

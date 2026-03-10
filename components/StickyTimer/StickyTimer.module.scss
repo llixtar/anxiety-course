@@ -1,0 +1,103 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.stickyWrapper {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%) !important;
+  z-index: 100;
+  width: 90%;
+  max-width: 600px;
+
+  // На мобілці притискаємо плашку до самого низу, як панель додатку
+  @include respond-to(mobile) {
+    bottom: 0;
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+.stickyBar {
+  background-color: $text-main;
+  color: $bg-color;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  border: 1px solid rgba($bg-color, 0.2);
+
+  @include respond-to(mobile) {
+    flex-direction: row; // Повертаємо в один рядок
+    gap: 15px;
+    // env(safe-area-inset-bottom) - це супер-фішка для iPhone, щоб нижня смужка (Home Indicator) не перекривала кнопку
+    padding: 15px 15px calc(15px + env(safe-area-inset-bottom)); 
+    border: none;
+    border-top: 1px solid rgba($bg-color, 0.2);
+  }
+}
+
+.timerBlock {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  @include respond-to(mobile) {
+    flex-direction: column; // Текст і таймер один під одним
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .text {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    opacity: 0.8;
+
+    @include respond-to(mobile) {
+      font-size: 0.65rem; // Робимо меншим на мобілці
+    }
+  }
+
+  .timer {
+    font-family: monospace;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: $bg-color;
+    background-color: $accent-color;
+    padding: 5px 10px;
+
+    @include respond-to(mobile) {
+      font-size: 1.1rem; // Трохи зменшуємо цифри
+      padding: 3px 6px;
+    }
+  }
+}
+
+.actionBtn {
+  background-color: $accent-color;
+  color: $white;
+  
+  border: none;
+  padding: 15px 30px;
+  font-family: var(--font-body), sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: $white;
+    color: $text-main;
+  }
+
+  @include respond-to(mobile) {
+    width: auto;
+    flex-grow: 1; // Кнопка займе весь вільний простір праворуч
+    padding: 12px 10px;
+    font-size: 0.9rem;
+    text-align: center;
+  }
+}

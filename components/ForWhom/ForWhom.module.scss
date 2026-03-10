@@ -1,0 +1,142 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.forWhom {
+  padding: 60px 20px;
+  background-color: $bg-color;
+  overflow: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center; // Центруємо весь контент секції
+  
+}
+
+.sectionTitle {
+  // СТИЛЬ ЯК У ХЕРО
+  font-family: var(--font-logo), sans-serif !important;
+  font-weight: 100;
+  font-size: clamp(2.8rem, 10vw, 6.5rem);
+  /*Він приймає три параметри: Мінімум, Ідеальний стан та Максимум.*/
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: $text-main;
+  max-width: 1000px;
+  margin: 0 0 60px 0; // ЗМІНИЛИ ТУТ: 0 зверху, 60px знизу
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.timelineWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center; // Центруємо блок таймлайну
+  margin-bottom: 60px;
+}
+
+.timeline {
+  position: relative;
+  padding-left: 40px;
+  max-width: fit-content; // Щоб лінія була притиснута до тексту, а не літала збоку
+}
+
+.mainLine {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1px;
+  background-color: rgba($text-main, 0.1);
+  z-index: 1;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 100%;
+    background-color: $accent-color;
+  }
+}
+
+.itemsList {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  &:hover {
+    .marker {
+      background-color: $accent-color;
+      transform: scale(1.3);
+    }
+
+    .text {
+      color: $accent-color;
+    }
+  }
+}
+
+.marker {
+  position: absolute;
+  left: -44.5px;
+  width: 9px;
+  height: 9px;
+  background-color: $text-main;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.text {
+  font-family: var(--font-body), sans-serif !important;
+  font-size: 1.3rem;
+  color: $text-main;
+  line-height: 1.3;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+  text-align: left;
+}
+
+.footerNote {
+  font-family: var(--font-logo), sans-serif !important;
+  font-size: 1.4rem;
+  color: $text-main;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-align: center;
+  max-width: 600px;
+  margin-top: 10px;
+}
+
+@include respond-to(mobile) {
+  .sectionTitle {
+    font-size: 2.2rem;
+  }
+
+  .text {
+    font-size: 1.05rem;
+  }
+
+  .timeline {
+    padding-left: 30px;
+  }
+
+  .marker {
+    left: -34.5px;
+  }
+}

@@ -1,0 +1,103 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.reviews {
+  padding: 50px 20px;
+  background-color: $bg-color;
+  border-top: 1px solid rgba($text-main, 0.1);
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sectionTitle {
+  font-family: var(--font-logo), sans-serif !important;
+  font-weight: 100;
+  font-size: clamp(2.8rem, 10vw, 6.5rem);
+  /*Він приймає три параметри: Мінімум, Ідеальний стан та Максимум.*/
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: $text-main;
+  max-width: 1000px;
+  margin: 0;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.carouselWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 30px;
+}
+
+// Embla Base Styles
+.embla {
+  overflow: hidden; // Ховає все, що виходить за межі контейнера
+  width: 100%;
+  max-width: 500px; // Обмежуємо ширину скріншота, щоб не був гігантським на ПК
+}
+
+.emblaContainer {
+  display: flex;
+  // touch-action дозволяє свайпати вліво/вправо, але не блокує скрол сторінки вниз
+  touch-action: pan-y pinch-zoom; 
+}
+
+.emblaSlide {
+  flex: 0 0 100%; // 100% означає, що показується 1 слайд за раз. Можна змінити на 50%, щоб було 2
+  min-width: 0;
+  padding: 0 10px; // Простір між слайдами
+}
+
+.slideInner {
+  border: 1px solid rgba($text-main, 0.2); // Тонка рамка навколо скріншота
+  padding: 15px;
+  background-color: rgba($text-main, 0.02);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.reviewImage {
+  max-width: 100%;
+  height: auto;
+  max-height: 600px; // Запобігає розтягуванню дуже довгих скріншотів (наприклад, з Telegram)
+  object-fit: contain;
+  pointer-events: none; // Щоб браузер не намагався "тягнути" картинку замість свайпу слайдера
+}
+
+// Наші фірмові квадратні кнопки
+.navButton {
+  background: transparent;
+  border: 1px solid $text-main;
+  color: $text-main;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+  border-radius: 0; // Строгий квадрат
+  transition: all 0.3s ease;
+  flex-shrink: 0; // Щоб кнопки не стискалися
+
+  &:hover {
+    background-color: $text-main;
+    color: $bg-color;
+  }
+  
+  @include respond-to(mobile) {
+    display: none; // На телефонах стрілки не потрібні, люди звикли свайпати пальцем
+  }
+}

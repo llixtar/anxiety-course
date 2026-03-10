@@ -1,0 +1,214 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.results {
+  padding: 60px 20px;
+  background-color: $bg-color;
+  overflow: hidden; 
+}
+
+.container {
+  max-width: 900px; 
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sectionTitle {
+  font-family: var(--font-logo), sans-serif !important;
+  font-weight: 100;
+  font-size: clamp(2.8rem, 10vw, 5.0rem);
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: $text-main;
+  max-width: 1000px;
+  margin: 0 0 50px 0;
+  width: 100%;
+  text-align: center;
+}
+
+/* ==================================
+   ДЕТАЛЬНИЙ СПИСОК
+   ================================== */
+.detailedList {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  margin-bottom: 80px;
+  gap: 15px;
+}
+
+.listItem {
+  width: 100%;
+  max-width: 400px; 
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 15px;
+  
+  @include respond-to(mobile) {
+    max-width: 100%;
+    padding: 0 10px;
+  }
+}
+
+.listDash {
+  color: $accent-color;
+  font-size: 1.25rem;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.itemText {
+  font-family: var(--font-body), sans-serif !important;
+  font-size: 1.25rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: $text-main;
+  margin: 0;
+  text-align: left;
+}
+
+/* ==================================
+   SUMMARY BOX (Світляк 3.0 — Тепер точно по колу)
+   ================================== */
+.summaryContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 60px;
+}
+
+.summaryBox {
+  position: relative;
+  z-index: 1;
+  padding: 50px 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden; 
+  width: 100%;
+  max-width: 400px;
+  background-color: transparent; // Фон дає ::after
+
+  &::before {
+    content: '';
+    position: absolute;
+    z-index: -2;
+    // Ключовий момент: ставимо в центр і вирівнюємо
+    top: 50%;
+    left: 50%;
+    width: 250%; // Достатньо великий, щоб покрити кути
+    height: 250%;
+    // Робимо чіткий промінь світла
+    background: conic-gradient(
+      from 0deg,
+      transparent 0%,
+      transparent 15%,
+      rgba(255, 255, 255, 0.8) 20%, // Яскраве ядро
+      rgba(255, 255, 255, 0.2) 25%, // М'який шлейф
+      transparent 30%,
+      transparent 100%
+    );
+    // Додаємо translate(-50%, -50%) в анімацію
+    animation: boxFireflyRotate 6s linear infinite; 
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    left: 2px;
+    top: 2px;
+    width: calc(100% - 4px);
+    height: calc(100% - 4px);
+    background-color: $accent-color;
+    border: 1px solid rgba($white, 0.1);
+  }
+
+  @include respond-to(mobile) {
+    padding: 40px 20px;
+  }
+}
+
+.summaryContent {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.summaryTitle {
+  font-family: var(--font-logo), sans-serif;
+  font-size: 1.8rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 40px;
+  color: $white;
+  text-align: center;
+}
+
+.checkList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-start;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.checkItem {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.checkIcon {
+  color: $white;
+  font-family: monospace;
+  font-weight: bold;
+}
+
+.checkText {
+  font-family: var(--font-body), sans-serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: $white;
+  text-align: left;
+}
+
+// ОНОВЛЕНА АНІМАЦІЯ: Тримаємо центр і крутимо
+@keyframes boxFireflyRotate {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.finalNote {
+  text-align: center;
+  font-family: var(--font-logo), sans-serif;
+  font-size: 1.4rem;
+  line-height: 1.4;
+  font-weight: 200;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: $text-main;
+}
+
+@include respond-to(mobile) {
+  .sectionTitle { font-size: 1.8rem; }
+  .itemText { font-size: 1.05rem; }
+  .summaryBox { padding: 40px 20px; width: 100%; }
+}

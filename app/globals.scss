@@ -1,0 +1,55 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+
+:root {
+  --heading-font: var(--font-heading), 'Raleway', sans-serif;
+  --body-font: var(--font-body), 'Manrope', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+html, body {
+  background-color: $bg-color !important;
+  color: $text-main;
+  overflow-x: hidden;
+  min-height: 100vh;
+  // Використовуємо Manrope для всього тіла
+  font-family: var(--body-font) !important;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  // Використовуємо Raleway для всіх заголовків
+  font-family: var(--heading-font) !important;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+main {
+  padding-top: 100px;
+
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+html {
+  scroll-behavior: smooth; /* Плавний скрол */
+  
+  // Вкажи тут висоту свого Header. 
+  // Якщо він, наприклад, 80px, то постав 90px-100px, щоб був невеликий «повітряний» відступ
+  scroll-padding-top: 60px; 
+}

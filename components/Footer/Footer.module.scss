@@ -1,0 +1,86 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.footerWrapper {
+  padding: 0 20px 40px; // Відступи від країв екрану
+  background-color: $bg-color; // Фон сторінки, щоб пігулка "плавала"
+}
+
+.footer {
+  background-color: $text-main; // Темний колір пігулки
+  border-radius: 50px; // Форма пігулки
+  padding: 20px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between; // Розкидаємо елементи по горизонталі
+  align-items: center;
+
+  @include respond-to(mobile) {
+    flex-direction: column;
+    border-radius: 20px; // На мобілці робимо прямокутник із м'якими кутами
+    padding: 30px 20px;
+    gap: 20px;
+  }
+}
+
+.logo {
+  font-family: var(--font-logo), sans-serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: $bg-color; // Світлий текст на темному фоні
+}
+
+.credits {
+  font-size: 0.75rem;
+  color: rgba($bg-color, 0.5); // ТЕПЕР ВІН СВІТЛИЙ (як і копірайт)
+  font-family: var(--font-body), sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  
+  // Прибираємо margin-top для десктопа, щоб він стояв в одну лінію з іншими
+  margin: 0; 
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      opacity: 1;
+      color: $bg-color; // При наведенні стає яскравішим
+    }
+  }
+
+  @include respond-to(mobile) {
+    margin-top: 5px; // А на мобільці можна трохи відступити
+    text-align: center;
+  }
+}
+
+.links {
+  display: flex;
+  gap: 30px;
+  
+  a {
+    font-size: 0.85rem;
+    color: rgba($bg-color, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: color 0.3s ease;
+
+    &:hover { color: $bg-color; }
+  }
+
+  @include respond-to(mobile) {
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+  }
+}
+
+.copy {
+  font-size: 0.8rem;
+  color: rgba($bg-color, 0.4);
+}

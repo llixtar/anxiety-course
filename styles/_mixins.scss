@@ -1,0 +1,17 @@
+@use './variables' as *;
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin respond-to($media) {
+  @if $media == mobile {
+    @media (max-width: $mobile) { @content; }
+  } @else if $media == tablet {
+    @media (max-width: $tablet) { @content; }
+  } @else if $media == desktop {
+    @media (max-width: $desktop) { @content; }
+  }
+}

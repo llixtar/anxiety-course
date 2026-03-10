@@ -1,0 +1,119 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  label {
+    font-family: var(--font-body), sans-serif;
+    font-size: 0.85rem;
+    color: rgba($white, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  input {
+    width: 100%;
+    background-color: rgba($white, 0.05);
+    border: 1px solid rgba($white, 0.1);
+    color: $white;
+    padding: 15px;
+    font-family: monospace;
+    font-size: 1.1rem;
+    outline: none;
+    transition: all 0.3s ease;
+
+    &::placeholder {
+      color: rgba($white, 0.2);
+    }
+
+    &:focus {
+      border-color: $accent-color;
+      background-color: rgba($white, 0.1);
+      box-shadow: 0 0 15px rgba($accent-color, 0.2);
+    }
+  }
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.divider {
+  text-align: center;
+  position: relative;
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.8rem;
+  color: rgba($white, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 10px 0;
+
+  &::before, &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 30%;
+    height: 1px;
+    background-color: rgba($white, 0.1);
+  }
+
+  &::before { left: 0; }
+  &::after { right: 0; }
+}
+
+.submitBtn {
+  margin-top: 10px;
+  width: 100%;
+  padding: 18px;
+  font-family: var(--font-body), sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background-color: $accent-color;
+  color: $white;
+  border: 1px solid $accent-color;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover:not(:disabled) {
+    background-color: $white;
+    color: $text-main;
+    border-color: $white;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+}
+
+// Анімація пульсації для стану "ОБРОБКА..."
+.processing {
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
+.secureNote {
+  text-align: center;
+  font-size: 0.75rem;
+  color: rgba($white, 0.4);
+  margin-top: 10px;
+}

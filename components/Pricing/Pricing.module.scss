@@ -1,0 +1,220 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.pricing {
+  padding: 30px 20px;
+  background-color: $bg-color;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.sectionTitle {
+  font-family: var(--font-logo), sans-serif !important;
+  font-weight: 100;
+  font-size: clamp(2.8rem, 10vw, 5.0rem);
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: $text-main;
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+
+  @include respond-to(mobile) {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* === МАГІЯ КАРТКИ === */
+.card {
+  position: relative;
+  background-color: $text-main; // БАЗОВИЙ СТАН: ТЕМНИЙ
+  border: 1px solid rgba($white, 0.1);
+  padding: 50px 40px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+  overflow: hidden;
+
+  // Плавний перехід для тексту
+  .name, .newPrice, .features li, .desc, .oldPrice {
+    transition: color 0.5s ease, opacity 0.5s ease;
+  }
+  
+  .priceBlock {
+    transition: border-color 0.5s ease;
+  }
+
+  // Верхня лінія (завжди є)
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 4px;
+    background-color: $accent-color;
+    opacity: 0.3;
+    transition: opacity 0.5s ease;
+  }
+
+  /* ОСЬ ВАЖЛИВИЙ РЯДОК:
+     Ховер працює, ТІЛЬКИ якщо всередині картки НЕ наведено на .buyBtn
+  */
+  &:hover:not(:has(.buyBtn:hover)) {
+    transform: translateY(-10px);
+    background-color: $white; // Стає світлою
+    border-color: $accent-color;
+    box-shadow: 0 20px 40px rgba($accent-color, 0.15);
+
+    &::before { opacity: 1; }
+
+    // Інвертуємо текст у темний
+    .name, .newPrice, .features li { color: $text-main; }
+    .desc { color: rgba($text-main, 0.7); }
+    
+    .priceBlock {
+      border-bottom-color: rgba($text-main, 0.1);
+      .oldPrice { color: $text-main; opacity: 0.4; }
+    }
+  }
+
+  /* Коли ми наводимо на саму кнопку, картка повертається у темний стан, 
+     але ми все одно залишимо їй ефект "підняття" (translateY)
+  */
+  &:hover:has(.buyBtn:hover) {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3); // Темна тінь
+    &::before { opacity: 1; }
+  }
+}
+
+.name {
+  font-family: var(--font-logo), sans-serif;
+  font-size: 1.8rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  color: $white;
+}
+
+.desc {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  margin-bottom: 30px;
+  min-height: 40px;
+  color: rgba($white, 0.7);
+}
+
+.priceBlock {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba($white, 0.1);
+
+  .oldPrice {
+    font-family: monospace;
+    font-size: 1.3rem;
+    text-decoration: line-through;
+    color: $white;
+    opacity: 0.4;
+    margin-bottom: 5px;
+  }
+
+  .newPrice {
+    font-family: var(--font-logo), sans-serif;
+    font-size: 3.5rem;
+    font-weight: 200;
+    line-height: 1;
+    color: $white;
+  }
+}
+
+.features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 50px 0;
+  flex-grow: 1;
+
+  li {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    line-height: 1.4;
+    color: $white;
+
+    &::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: $accent-color;
+      font-weight: bold;
+    }
+  }
+}
+
+/* === КНОПКА === */
+.buyBtn {
+  width: 100%;
+  padding: 18px;
+  font-family: var(--font-body), sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background-color: $accent-color;
+  color: $white;
+  border: 1px solid $accent-color;
+  cursor: pointer;
+  border-radius: 0; 
+  transition: all 0.4s ease;
+
+  // Коли курсор на кнопці, вона стає білою, а картка навколо неї (як ми прописали вище) знову темніє
+  &:hover {
+    background-color: $white;
+    color: $text-main;
+    border-color: $white;
+    transform: scale(1.02); // Легке збільшення самої кнопки для акценту
+  }
+}
+
+/* ПЛАШКА З ТАЙМЕРОМ */
+.timerBanner {
+  margin-top: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 25px;
+  background-color: rgba($accent-color, 0.05);
+  border: 1px dashed $accent-color;
+  
+  .bannerText {
+    font-family: var(--font-logo), sans-serif;
+    font-size: 1.2rem;
+    color: $text-main;
+    letter-spacing: 0.05em;
+  }
+  
+  .bannerTimer {
+    font-family: monospace;
+    font-size: 2rem;
+    font-weight: bold;
+    color: $white;
+    background-color: $accent-color;
+    padding: 2px 12px;
+  }
+
+  @include respond-to(mobile) {
+    flex-direction: column;
+    text-align: center;
+  }
+}
