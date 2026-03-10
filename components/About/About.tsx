@@ -53,6 +53,7 @@ export default function About() {
                         fill 
                         className={styles.photo}
                         sizes="(max-width: 768px) 100vw, 450px"
+                        
                     />
                 </motion.div>
 
