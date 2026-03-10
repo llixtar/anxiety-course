@@ -69,7 +69,8 @@ export default function Pricing() {
           ВАРТІСТЬ КУРСУ
         </motion.h2>
 
-        <div className={styles.grid}>
+        {/* ДОДАНО ID ДЛЯ ПРЯМОГО СКРОЛУ */}
+        <div className={styles.grid} id="tariffs-cards">
           {tariffs.map((tariff, index) => {
             const newPrice = Math.round(tariff.basePrice * (1 - DISCOUNT_PERCENT / 100));
 

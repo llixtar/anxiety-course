@@ -69,7 +69,7 @@ export default function Hero() {
             <div className={styles.actions}>
               <button
                 className={styles.primaryBtn}
-                onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => document.getElementById('tariffs-cards')?.scrollIntoView({ behavior: 'smooth' })}
               >
                 <span className={styles.btnMainText}>
                   ПРИДБАТИ КУРС ЗА{' '}

@@ -66,7 +66,10 @@ export default function StickyTimer() {
               <span className={styles.text}>Знижка діє ще:</span>
               <span className={styles.timer}>{formatTime(timeLeft)}</span>
             </div>
-            <button className={styles.actionBtn} onClick={scrollToPricing}>
+            <button 
+              className={styles.actionBtn} 
+              onClick={() => document.getElementById('tariffs-cards')?.scrollIntoView({ behavior: 'smooth' })}
+            >
               ОБРАТИ ТАРИФ
             </button>
           </div>

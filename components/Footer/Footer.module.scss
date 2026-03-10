@@ -2,23 +2,23 @@
 @use '../../styles/mixins' as *;
 
 .footerWrapper {
-  padding: 0 20px 40px; // Відступи від країв екрану
-  background-color: $bg-color; // Фон сторінки, щоб пігулка "плавала"
+  padding: 0 20px 40px; 
+  background-color: $bg-color; 
 }
 
 .footer {
-  background-color: $text-main; // Темний колір пігулки
-  border-radius: 50px; // Форма пігулки
+  background-color: $text-main; 
+  border-radius: 50px; 
   padding: 20px 40px;
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
-  justify-content: space-between; // Розкидаємо елементи по горизонталі
+  justify-content: space-between; 
   align-items: center;
 
   @include respond-to(mobile) {
     flex-direction: column;
-    border-radius: 20px; // На мобілці робимо прямокутник із м'якими кутами
+    border-radius: 20px; 
     padding: 30px 20px;
     gap: 20px;
   }
@@ -29,17 +29,15 @@
   font-size: 1.2rem;
   font-weight: 400;
   letter-spacing: 0.1em;
-  color: $bg-color; // Світлий текст на темному фоні
+  color: $bg-color; 
 }
 
 .credits {
   font-size: 0.75rem;
-  color: rgba($bg-color, 0.5); // ТЕПЕР ВІН СВІТЛИЙ (як і копірайт)
+  color: rgba($bg-color, 0.5); 
   font-family: var(--font-body), sans-serif;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  
-  // Прибираємо margin-top для десктопа, щоб він стояв в одну лінію з іншими
   margin: 0; 
 
   a {
@@ -49,12 +47,12 @@
     
     &:hover {
       opacity: 1;
-      color: $bg-color; // При наведенні стає яскравішим
+      color: $bg-color; 
     }
   }
 
   @include respond-to(mobile) {
-    margin-top: 5px; // А на мобільці можна трохи відступити
+    margin-top: 5px; 
     text-align: center;
   }
 }
@@ -62,6 +60,7 @@
 .links {
   display: flex;
   gap: 30px;
+  align-items: center;
   
   a {
     font-size: 0.85rem;
@@ -69,8 +68,26 @@
     text-transform: uppercase;
     letter-spacing: 0.05em;
     transition: color 0.3s ease;
+    text-decoration: none;
 
     &:hover { color: $bg-color; }
+  }
+
+  /* Стилі для Інстаграму */
+  .instaLink {
+    display: flex;
+    align-items: center;
+    gap: 8px; 
+
+    svg {
+      width: 18px;
+      height: 18px;
+      transition: transform 0.3s ease;
+    }
+
+    &:hover svg {
+      transform: scale(1.1); 
+    }
   }
 
   @include respond-to(mobile) {
@@ -83,4 +100,60 @@
 .copy {
   font-size: 0.8rem;
   color: rgba($bg-color, 0.4);
+}
+
+/* Стилі для кнопок, щоб вони виглядали як посилання */
+.modalBtn {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: rgba($bg-color, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: color 0.3s ease;
+
+  &:hover { color: $bg-color; }
+}
+
+/* Стилі для тексту всередині модалок */
+.documentContent {
+  max-height: 70vh; // Обмежуємо висоту, щоб з'явився скрол
+  overflow-y: auto; // Додаємо вертикальний скрол
+  padding-right: 15px; // Відступ для скролбара
+  text-align: left;
+  color: $bg-color;
+
+  h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    font-family: var(--font-logo), sans-serif;
+  }
+
+  p {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    font-family: var(--font-body), sans-serif;
+    text-transform: none; // Відключаємо великі літери для зручного читання
+  }
+
+  /* Красивий кастомний скролбар */
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    background: rgba($text-main, 0.05);
+    border-radius: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba($text-main, 0.2);
+    border-radius: 4px;
+    
+    &:hover {
+      background: rgba($text-main, 0.4);
+    }
+  }
 }

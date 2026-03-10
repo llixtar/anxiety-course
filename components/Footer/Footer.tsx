@@ -1,23 +1,44 @@
-import Link from 'next/link';
+'use client';
+
+import { useState } from 'react';
 import styles from './Footer.module.scss';
+import Modal from '../Modal/Modal';
 
 export default function Footer() {
+  const [isOfferOpen, setIsOfferOpen] = useState(false);
+  const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
+
   return (
     <div className={styles.footerWrapper}>
       <footer className={styles.footer}>
         <div className={styles.logo}>ANXIETY.COURSE</div>
         
         <div className={styles.links}>
-          <Link href="/offer" target="_blank" rel="noopener noreferrer">
+          {/* Посилання на Інстаграм */}
+          <a 
+            href="https://www.instagram.com/coach_marichka" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className={styles.instaLink}
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+            Instagram
+          </a>
+
+          {/* Кнопки замість посилань */}
+          <button onClick={() => setIsOfferOpen(true)} className={styles.modalBtn}>
             Договір оферти
-          </Link>
+          </button>
           
-          <Link href="/privacy" target="_blank" rel="noopener noreferrer">
+          <button onClick={() => setIsPrivacyOpen(true)} className={styles.modalBtn}>
             Політика конфіденційності
-          </Link>
+          </button>
         </div>
 
-        {/* Ліцензійне посилання для Storyset */}
         <div className={styles.credits}>
           Illustrations by <a href="https://storyset.com/" target="_blank" rel="noopener noreferrer">Storyset</a>
         </div>
@@ -26,6 +47,56 @@ export default function Footer() {
           © {new Date().getFullYear()} Усі права захищені.
         </div>
       </footer>
+
+      {/* Модальне вікно Оферти */}
+      <Modal isOpen={isOfferOpen} onClose={() => setIsOfferOpen(false)}>
+        <div className={styles.documentContent}>
+          <h3>Договір публічної оферти</h3>
+          <p>Цей Договір є публічною пропозицією (офертою) фізичної особи-підприємця [ПІБ ФОП] (далі — Виконавець) укласти договір про надання інформаційних послуг з будь-якою фізичною особою (далі — Замовник), яка прийме цю пропозицію.</p>
+          
+          <h4>1. Предмет договору</h4>
+          <p>1.1. Виконавець зобов'язується надати Замовнику інформаційні послуги у вигляді доступу до онлайн-курсу «Anxiety Course» (далі — Курс), а Замовник зобов'язується оплатити ці послуги відповідно до обраного тарифу.</p>
+          <p>1.2. Доступ до матеріалів Курсу надається через закритий Telegram-канал або іншу платформу, вказану Виконавцем.</p>
+
+          <h4>2. Порядок оплати та надання послуг</h4>
+          <p>2.1. Вартість послуг визначається обраним тарифом і вказується на сторінці оплати сайту.</p>
+          <p>2.2. Послуги вважаються оплаченими з моменту зарахування грошових коштів на рахунок Виконавця через платіжну систему WayForPay.</p>
+          <p>2.3. Відразу після успішної оплати Замовник отримує автоматичний доступ до матеріалів Курсу (посилання на приєднання до закритої групи).</p>
+
+          <h4>3. Повернення коштів</h4>
+          <p>3.1. Оскільки матеріали Курсу є цифровим контентом, повернення коштів після надання доступу до матеріалів не передбачено, згідно із Законом України «Про захист прав споживачів».</p>
+
+          <h4>4. Інтелектуальна власність</h4>
+          <p>4.1. Усі матеріали Курсу є об'єктом авторського права. Замовнику забороняється копіювати, розповсюджувати або передавати матеріали третім особам.</p>
+        </div>
+      </Modal>
+
+      {/* Модальне вікно Політики */}
+      <Modal isOpen={isPrivacyOpen} onClose={() => setIsPrivacyOpen(false)}>
+        <div className={styles.documentContent}>
+          <h3>Політика конфіденційності</h3>
+          <p>Ця Політика конфіденційності визначає порядок збору, обробки та захисту персональних даних користувачів сайту (далі — Користувачі).</p>
+          
+          <h4>1. Збір інформації</h4>
+          <p>1.1. Під час оформлення замовлення на сайті ми збираємо мінімально необхідний обсяг даних: Ім'я та адресу електронної пошти (Email).</p>
+          <p>1.2. Оплата здійснюється через захищений шлюз WayForPay. Ми не збираємо, не бачимо і не зберігаємо дані ваших банківських карток.</p>
+
+          <h4>2. Використання даних</h4>
+          <p>2.1. Зібрані дані використовуються виключно для:</p>
+          <ul>
+            <li>— Ідентифікації Користувача як покупця Курсу;</li>
+            <li>— Надання автоматичного доступу до матеріалів;</li>
+            <li>— Зв'язку з Користувачем (відправка чеку, посилання на доступ або організаційних повідомлень).</li>
+          </ul>
+
+          <h4>3. Захист та передача даних</h4>
+          <p>3.1. Ми вживаємо всіх необхідних технічних заходів для захисту ваших даних від несанкціонованого доступу.</p>
+          <p>3.2. Ми не передаємо ваші персональні дані третім особам, окрім випадків, прямо передбачених чинним законодавством України.</p>
+
+          <h4>4. Згода користувача</h4>
+          <p>4.1. Натискаючи кнопку «Оплатити», Користувач дає автоматичну згоду на обробку своїх персональних даних згідно з умовами цієї Політики.</p>
+        </div>
+      </Modal>
     </div>
   );
 }

@@ -27,9 +27,13 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 30px;
+  
+  /* ДОДАНО ВІДСТУП ДЛЯ СКРОЛУ (щоб хедер не перекривав картки) */
+  scroll-margin-top: 120px;
 
   @include respond-to(mobile) {
     grid-template-columns: 1fr;
+    scroll-margin-top: 100px; // Трохи менший відступ для мобілки
   }
 }
 
@@ -177,12 +181,12 @@
   border-radius: 0; 
   transition: all 0.4s ease;
 
-  // Коли курсор на кнопці, вона стає білою, а картка навколо неї (як ми прописали вище) знову темніє
+  // Коли курсор на кнопці, вона стає білою, а картка навколо неї знову темніє
   &:hover {
     background-color: $white;
     color: $text-main;
     border-color: $white;
-    transform: scale(1.02); // Легке збільшення самої кнопки для акценту
+    transform: scale(1.02); 
   }
 }
 
