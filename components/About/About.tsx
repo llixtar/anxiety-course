@@ -25,7 +25,7 @@ export default function About() {
                     ХТО ВЕДЕ КУРС
                 </motion.h2>
 
-                {/* ВСТУПНИЙ ТЕКСТ (ТЕПЕР ТУТ, ПІД ЗАГОЛОВКОМ) */}
+                {/* ВСТУПНИЙ ТЕКСТ */}
                 <motion.div
                     className={styles.introText}
                     initial={{ opacity: 0, y: 20 }}
@@ -39,7 +39,7 @@ export default function About() {
                     </p>
                 </motion.div>
 
-                {/* ГОЛОВНЕ ФОТО (СПУСТИЛОСЯ НИЖЧЕ) */}
+                {/* ГОЛОВНЕ ФОТО */}
                 <motion.div
                     className={styles.imageWrapper}
                     initial={{ opacity: 0, scale: 0.95 }}
@@ -53,11 +53,10 @@ export default function About() {
                         fill 
                         className={styles.photo}
                         sizes="(max-width: 768px) 100vw, 450px"
-
                     />
                 </motion.div>
 
-                {/* БЛОК 1: Картинка зліва, текст справа */}
+                {/* БЛОК 1: ТЕКСТ ЗЛІВА, КАРТИНКА СПРАВА */}
                 <motion.div 
                     className={styles.rowBlock}
                     initial={{ opacity: 0, y: 20 }}
@@ -65,6 +64,11 @@ export default function About() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
                 >
+                    <div className={styles.rowText}>
+                        <p>
+                            Моя задача — створити простір, де не страшно говорити, зрозуміло розбиратися у собі і комфортно рухатися до змін.
+                        </p>
+                    </div>
                     <div className={styles.rowImage}>
                         <Image
                             src="/images/about-1.png" 
@@ -74,14 +78,9 @@ export default function About() {
                             sizes="(max-width: 768px) 100vw, 350px"
                         />
                     </div>
-                    <div className={styles.rowText}>
-                        <p>
-                            Моя задача — створити простір, де не страшно говорити, зрозуміло розбиратися у собі і комфортно рухатися до змін.
-                        </p>
-                    </div>
                 </motion.div>
 
-                {/* БЛОК 2: Текст зліва, Картинка справа */}
+                {/* БЛОК 2: КАРТИНКА ЗЛІВА, ТЕКСТ СПРАВА */}
                 <motion.div 
                     className={`${styles.rowBlock} ${styles.rowReverse}`}
                     initial={{ opacity: 0, y: 20 }}
@@ -89,6 +88,15 @@ export default function About() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
                 >
+                    <div className={styles.rowImage}>
+                        <Image
+                            src="/images/about-2.png" 
+                            alt="Робота з клієнтами"
+                            fill 
+                            className={styles.photo}
+                            sizes="(max-width: 768px) 100vw, 350px"
+                        />
+                    </div>
                     <div className={styles.rowText}>
                         <p>Працюю із запитами:</p>
                         
@@ -100,16 +108,6 @@ export default function About() {
                             <li>прийняття та любов до себе</li>
                             <li>допомога у структурі внутрішнього хаосу</li>
                         </ul>
-                    </div>
-                    
-                    <div className={styles.rowImage}>
-                        <Image
-                            src="/images/about-2.png" 
-                            alt="Робота з клієнтами"
-                            fill 
-                            className={styles.photo}
-                            sizes="(max-width: 768px) 100vw, 350px"
-                        />
                     </div>
                 </motion.div>
 
