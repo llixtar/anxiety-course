@@ -48,12 +48,12 @@ export default function About() {
                     transition={{ duration: 0.8, delay: 0.3 }}
                 >
                     <Image
-                        src="/images/author.jpg" 
+                        src="/images/maria.jpg" 
                         alt="Марія - креативний психолог"
                         fill 
                         className={styles.photo}
                         sizes="(max-width: 768px) 100vw, 450px"
-                        
+
                     />
                 </motion.div>
 
