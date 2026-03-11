@@ -29,11 +29,11 @@
   gap: 30px;
   
   /* ДОДАНО ВІДСТУП ДЛЯ СКРОЛУ (щоб хедер не перекривав картки) */
-  scroll-margin-top: 120px;
+  scroll-margin-top: 80px;
 
   @include respond-to(mobile) {
     grid-template-columns: 1fr;
-    scroll-margin-top: 100px; // Трохи менший відступ для мобілки
+    scroll-margin-top: 30px; // Трохи менший відступ для мобілки
   }
 }
 
