@@ -4,14 +4,13 @@ import { motion, Variants } from 'framer-motion';
 import styles from './ForWhom.module.scss';
 
 const points = [
-  "постійно переживаєте за майбутнє",
-  "часто ловите себе на думках «а раптом щось піде не так»",
-  "накручуєте себе через дрібниці",
-  "відчуваєте внутрішню напругу, тривогу або страх без чіткої причини",
-  "вам складно розслабитися і відпочити",
-  "маєте поганий сон через думки",
-  "відчуваєте емоційне виснаження",
-  "хочете навчитися керувати своїми думками і емоціями"
+  "Ви постійно прокручуєте думки і не можете «вимкнути» голову",
+  "Часто думаєте: «А раптом щось піде не так?»",
+  "Вам складно розслабитися навіть у вихідний день",
+  "Через думки важко заснути або прокидаєтесь серед ночі",
+  "Відчуваєте напругу в тілі без зрозумілої причини",
+  "Коли все добре — все одно є тривога",
+  "Ви вже пробували поради «не накручувати себе», але це не працює"
 ];
 
 const containerVariants: Variants = {
@@ -44,6 +43,8 @@ export default function ForWhom() {
   return (
     <section className={styles.forWhom} id="for-whom">
       <div className={styles.container}>
+        
+        {/* Головний заголовок */}
         <motion.h2 
           className={styles.sectionTitle}
           initial={{ opacity: 0, y: 20 }}
@@ -51,8 +52,19 @@ export default function ForWhom() {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          ЦЕЙ КУРС ДЛЯ ВАС, ЯКЩО ВИ:
+          Вам знайоме це відчуття?
         </motion.h2>
+
+        {/* Новий підзаголовок */}
+        <motion.h3
+          className={styles.subtitle}
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2, duration: 0.8 }}
+        >
+          Виберіть цей курс, якщо впізнаєте себе хоча б у 2-х пунктах:
+        </motion.h3>
 
         <motion.div 
           className={styles.timelineWrapper}
@@ -74,15 +86,6 @@ export default function ForWhom() {
           </div>
         </motion.div>
 
-        <motion.p 
-          className={styles.footerNote}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 1 }}
-          viewport={{ once: true }}
-        >
-          {/* Також курс підійде тим, хто хоче краще зрозуміти себе та свою психіку. */}
-        </motion.p>
       </div>
     </section>
   );

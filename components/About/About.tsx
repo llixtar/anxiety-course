@@ -13,8 +13,9 @@ const stats = [
 export default function About() {
     return (
         <section className={styles.about} id="about">
-            
             <div className={styles.container}>
+                
+                {/* ГОЛОВНИЙ ЗАГОЛОВОК */}
                 <motion.h2
                     className={styles.sectionTitle}
                     initial={{ opacity: 0, y: 30 }}
@@ -25,7 +26,7 @@ export default function About() {
                     ХТО ВЕДЕ КУРС
                 </motion.h2>
 
-                {/* ВСТУПНИЙ ТЕКСТ */}
+                {/* ВСТУПНИЙ ТЕКСТ (Підзаголовок і текст) */}
                 <motion.div
                     className={styles.introText}
                     initial={{ opacity: 0, y: 20 }}
@@ -33,9 +34,9 @@ export default function About() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, delay: 0.2 }}
                 >
-                    <p className={styles.accentText}>Марія — креативний психолог.</p>
-                    <p>
-                        Працюю у форматі «лагідної терапії»: без тиску та агресії, через запитання, практики, візуалізації та прості пояснення складних речей.
+                    <p className={styles.accentSubtitle}>Марія — практичний психолог.</p>
+                    <p className={styles.mainDescription}>
+                        Допомагаю людям краще розуміти свої думки, емоції та справлятися з тривожними станами.
                     </p>
                 </motion.div>
 
@@ -48,8 +49,8 @@ export default function About() {
                     transition={{ duration: 0.8, delay: 0.3 }}
                 >
                     <Image
-                        src="/images/maria.jpg" 
-                        alt="Марія - креативний психолог"
+                        src="/images/autor.jpg" 
+                        alt="Марія - практичний психолог"
                         fill 
                         className={styles.photo}
                         sizes="(max-width: 768px) 100vw, 450px"
@@ -66,13 +67,17 @@ export default function About() {
                 >
                     <div className={styles.rowText}>
                         <p>
-                            Моя задача — створити простір, де не страшно говорити, зрозуміло розбиратися у собі і комфортно рухатися до змін.
+                            У своїй роботі використовую прості психологічні інструменти та практики, які допомагають знизити рівень тривоги та повернути внутрішній баланс.
+                        </p>
+                        <div className={styles.spacer}></div>
+                        <p>
+                            Моя мета — пояснювати складні психологічні процеси зрозуміло та давати техніки, які можна застосовувати у повсякденному житті.
                         </p>
                     </div>
                     <div className={styles.rowImage}>
                         <Image
                             src="/images/about-1.png" 
-                            alt="Моя задача"
+                            alt="Моя мета"
                             fill 
                             className={styles.photo}
                             sizes="(max-width: 768px) 100vw, 350px"
@@ -91,27 +96,25 @@ export default function About() {
                     <div className={styles.rowImage}>
                         <Image
                             src="/images/about-2.png" 
-                            alt="Робота з клієнтами"
+                            alt="Основні запити"
                             fill 
                             className={styles.photo}
                             sizes="(max-width: 768px) 100vw, 350px"
                         />
                     </div>
                     <div className={styles.rowText}>
-                        <p>Працюю із запитами:</p>
-                        
+                        <p className={styles.listTitle}>Основні запити, з якими я працюю:</p>
                         <ul className={styles.queriesList}>
                             <li>тривожність</li>
                             <li>самооцінка</li>
                             <li>стосунки</li>
-                            <li>самореалізація</li>
-                            <li>прийняття та любов до себе</li>
-                            <li>допомога у структурі внутрішнього хаосу</li>
+                            <li>емоційне виснаження</li>
+                            <li>прийняття себе</li>
                         </ul>
                     </div>
                 </motion.div>
 
-                {/* ФІНАЛЬНИЙ ТЕКСТ */}
+                {/* ФІНАЛЬНИЙ ТЕКСТ В РАМЦІ */}
                 <motion.div
                     className={styles.finalText}
                     initial={{ opacity: 0, y: 20 }}
@@ -119,8 +122,9 @@ export default function About() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
                 >
-                    <p>Я не про терапію роками.</p>
-                    <p>Я про якісні зміни у вашому темпі та ритмі.</p>
+                    <p>
+                        Я добре розумію, як виглядає життя з постійною тривогою, і саме тому створила цей курс — щоб показати прості інструменти, які реально допомагають заспокоїти думки.
+                    </p>
                 </motion.div>
 
                 {/* ПЛАШКИ ЗІ СТАТИСТИКОЮ */}
@@ -144,6 +148,7 @@ export default function About() {
                         );
                     })}
                 </motion.div>
+
             </div>
         </section>
     );

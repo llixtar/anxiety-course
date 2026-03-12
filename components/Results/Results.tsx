@@ -4,14 +4,11 @@ import { motion, Variants } from 'framer-motion';
 import styles from './Results.module.scss';
 
 const detailedResults = [
-  "зрозумієте природу своєї тривожності",
-  "навчитеся розпізнавати тривожні думки",
-  "перестанете постійно жити в сценаріях «а раптом»",
-  "освоїте практичні техніки зниження тривоги",
-  "навчитеся заспокоювати себе в моменті",
-  "зможете краще контролювати свої емоції",
-  "відчуєте більше внутрішнього спокою та стабільності",
-  "повернете відчуття контролю над своїм життям"
+  "думки більше не захоплюють вас у нескінченні сценарії",
+  "тривога більше не керує вашим днем",
+  "ви можете розслабитися без постійного напруження",
+  "з’являється відчуття внутрішнього спокою",
+  "життя знову відчувається легшим"
 ];
 
 const summaryResults = [
@@ -22,7 +19,6 @@ const summaryResults = [
   "навички роботи з тривожністю"
 ];
 
-// Анімація для контейнера (запускає дітей по черзі)
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
@@ -31,7 +27,6 @@ const containerVariants: Variants = {
   }
 };
 
-// Цікава анімація: виліт зліва з плавним проявленням
 const itemVariants: Variants = {
   hidden: { opacity: 0, x: -30 },
   visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } }
@@ -41,14 +36,27 @@ export default function Results() {
   return (
     <section className={styles.results} id="results">
       <div className={styles.container}>
+        
+        {/* ГОЛОВНИЙ ЗАГОЛОВОК */}
         <motion.h2 
           className={styles.sectionTitle}
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          ЩО ВИ ОТРИМАЄТЕ ПІСЛЯ КУРСУ
+          ПІСЛЯ ПРОХОДЖЕННЯ КУРСУ
         </motion.h2>
+
+        {/* ПІДЗАГОЛОВОК */}
+        <motion.h3
+          className={styles.subtitle}
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2, duration: 0.8 }}
+        >
+          Ви почнете помічати, що:
+        </motion.h3>
 
         {/* 1. Детальний список по центру */}
         <motion.div 
@@ -66,7 +74,18 @@ export default function Results() {
           ))}
         </motion.div>
 
-        {/* 2. Головний результат знизу зі світляком */}
+        {/* ФІНАЛЬНИЙ ТЕКСТ ПО ЦЕНТРУ */}
+        <motion.p 
+          className={styles.finalNote}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.5 }}
+        >
+          Спокій — це не талант. Це навичка, якій можна навчитися.
+        </motion.p>
+
+        {/* 2. Головний результат знизу зі світляком (ТЕПЕР ТЕМНИЙ) */}
         <motion.div 
           className={styles.summaryContainer}
           initial={{ opacity: 0, scale: 0.95 }}
@@ -89,15 +108,6 @@ export default function Results() {
           </div>
         </motion.div>
 
-        <motion.p 
-          className={styles.finalNote}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.5 }}
-        >
-          
-        </motion.p>
       </div>
     </section>
   );

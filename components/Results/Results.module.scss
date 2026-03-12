@@ -2,7 +2,7 @@
 @use '../../styles/mixins' as *;
 
 .results {
-  padding: 60px 10px;
+  padding: 80px 20px;
   background-color: $bg-color;
   overflow: hidden; 
 }
@@ -17,15 +17,25 @@
 
 .sectionTitle {
   font-family: var(--font-logo), sans-serif !important;
-  font-weight: 100;
-  font-size: clamp(2.8rem, 10vw, 5.0rem);
+  font-weight: 700;
+  font-size: clamp(2.8rem, 8vw, 4.5rem);
   line-height: 1.1;
   text-transform: uppercase;
   letter-spacing: 0.02em;
   color: $text-main;
   max-width: 1000px;
-  margin: 0 0 50px 0;
+  margin: 0 0 15px 0; // Зменшили відступ, бо є підзаголовок
   width: 100%;
+  text-align: center;
+}
+
+.subtitle {
+  font-family: var(--font-body), sans-serif !important;
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  font-weight: 400;
+  color: $text-muted;
+  margin: 0 0 50px 0;
+  font-style: italic;
   text-align: center;
 }
 
@@ -37,13 +47,13 @@
   display: flex;
   flex-direction: column;
   align-items: center; 
-  margin-bottom: 80px;
-  gap: 15px;
+  margin-bottom: 60px;
+  gap: 20px; // Трохи збільшили відступи між пунктами
 }
 
 .listItem {
   width: 100%;
-  max-width: 400px; 
+  max-width: 550px; // Зробили трохи ширше для довгих речень
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -56,7 +66,7 @@
 }
 
 .listDash {
-  color: $accent-color;
+  color: $text-main; // ТЕПЕР КОЛІР ТЕКСТУ, як просили
   font-size: 1.25rem;
   font-weight: bold;
   flex-shrink: 0;
@@ -64,23 +74,34 @@
 
 .itemText {
   font-family: var(--font-body), sans-serif !important;
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+  text-transform: none; // Прибрали капс для довгих речень
   color: $text-main;
   margin: 0;
   text-align: left;
+  line-height: 1.4;
+}
+
+.finalNote {
+  text-align: center;
+  font-family: var(--font-logo), sans-serif;
+  font-size: 1.6rem;
+  line-height: 1.4;
+  font-weight: 600;
+  color: $text-main;
+  margin-bottom: 60px; // Відступ до наступного блоку
+  max-width: 600px;
 }
 
 /* ==================================
-   SUMMARY BOX (Світляк 3.0 — Тепер точно по колу)
+   SUMMARY BOX (Світляк 3.0 — ТЕПЕР ТЕМНИЙ)
    ================================== */
 .summaryContainer {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-bottom: 60px;
+  margin-bottom: 30px;
 }
 
 .summaryBox {
@@ -92,29 +113,27 @@
   align-items: center;
   overflow: hidden; 
   width: 100%;
-  max-width: 400px;
-  background-color: transparent; // Фон дає ::after
+  max-width: 450px;
+  border-radius: 20px; // М'які кути, як в інших темних блоках
+  background-color: transparent; 
 
   &::before {
     content: '';
     position: absolute;
     z-index: -2;
-    // Ключовий момент: ставимо в центр і вирівнюємо
     top: 50%;
     left: 50%;
-    width: 250%; // Достатньо великий, щоб покрити кути
+    width: 250%; 
     height: 250%;
-    // Робимо чіткий промінь світла
     background: conic-gradient(
       from 0deg,
       transparent 0%,
       transparent 15%,
-      rgba(255, 255, 255, 0.8) 20%, // Яскраве ядро
-      rgba(255, 255, 255, 0.2) 25%, // М'який шлейф
+      rgba(255, 255, 255, 0.4) 20%, 
+      rgba(255, 255, 255, 0.1) 25%, 
       transparent 30%,
       transparent 100%
     );
-    // Додаємо translate(-50%, -50%) в анімацію
     animation: boxFireflyRotate 6s linear infinite; 
   }
 
@@ -126,7 +145,8 @@
     top: 2px;
     width: calc(100% - 4px);
     height: calc(100% - 4px);
-    background-color: $accent-color;
+    background-color: $text-main; // ТЕПЕР ЦЕЙ БЛОК ТЕМНО-СИНІЙ!
+    border-radius: 18px; 
     border: 1px solid rgba($white, 0.1);
   }
 
@@ -147,11 +167,10 @@
 .summaryTitle {
   font-family: var(--font-logo), sans-serif;
   font-size: 1.8rem;
-  font-weight: 400;
+  font-weight: 700; // Трохи жирніше на темному фоні
   text-transform: uppercase;
-  letter-spacing: 0.15em;
-  margin-bottom: 40px;
-  color: $white;
+  color: $accent-color; // Зробив заголовок помаранчевим для акценту (можеш змінити на $white, якщо не подобається)
+  margin-bottom: 30px;
   text-align: center;
 }
 
@@ -171,7 +190,7 @@
 }
 
 .checkIcon {
-  color: $white;
+  color: $accent-color; // Галочки теж зробив акцентними
   font-family: monospace;
   font-weight: bold;
 }
@@ -180,13 +199,11 @@
   font-family: var(--font-body), sans-serif;
   font-size: 1.1rem;
   font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  text-transform: none; // Прибрав капс для легкості
   color: $white;
   text-align: left;
 }
 
-// ОНОВЛЕНА АНІМАЦІЯ: Тримаємо центр і крутимо
 @keyframes boxFireflyRotate {
   from {
     transform: translate(-50%, -50%) rotate(0deg);
@@ -196,19 +213,9 @@
   }
 }
 
-.finalNote {
-  text-align: center;
-  font-family: var(--font-logo), sans-serif;
-  font-size: 1.4rem;
-  line-height: 1.4;
-  font-weight: 200;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: $text-main;
-}
-
 @include respond-to(mobile) {
-  .sectionTitle { font-size: 1.8rem; }
-  .itemText { font-size: 1.05rem; }
+  .results { padding: 50px 20px; }
+  .sectionTitle { font-size: 2.2rem; }
+  .itemText { font-size: 1.1rem; }
   .summaryBox { padding: 40px 20px; width: 100%; }
 }

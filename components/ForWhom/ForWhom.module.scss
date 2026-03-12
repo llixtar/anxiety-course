@@ -2,7 +2,7 @@
 @use '../../styles/mixins' as *;
 
 .forWhom {
-  padding: 60px 20px;
+  padding: 80px 20px;
   background-color: $bg-color;
   overflow: hidden;
 }
@@ -12,40 +12,46 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  align-items: center; // Центруємо весь контент секції
-  
+  align-items: center; 
 }
 
 .sectionTitle {
-  // СТИЛЬ ЯК У ХЕРО
   font-family: var(--font-logo), sans-serif !important;
-  font-weight: 100;
-  font-size: clamp(2.8rem, 10vw, 6.5rem);
-  /*Він приймає три параметри: Мінімум, Ідеальний стан та Максимум.*/
+  font-weight: 700;
+  font-size: clamp(2.8rem, 8vw, 4.5rem); // Трохи зменшив максимум
   line-height: 1.1;
   text-transform: uppercase;
   letter-spacing: 0.02em;
   color: $text-main;
   max-width: 1000px;
-  margin: 0 0 60px 0; // ЗМІНИЛИ ТУТ: 0 зверху, 60px знизу
+  margin: 0 0 15px 0; // Зменшив відступ знизу, бо тепер є підзаголовок
   width: 100%;
+  text-align: center;
+}
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+/* СТИЛІ НОВОГО ПІДЗАГОЛОВКА */
+.subtitle {
+  font-family: var(--font-body), sans-serif !important;
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  font-weight: 400;
+  color: $text-muted;
+  margin: 0 0 50px 0;
+  font-style: italic;
+  text-align: center;
+  max-width: 800px;
 }
 
 .timelineWrapper {
   width: 100%;
   display: flex;
-  justify-content: center; // Центруємо блок таймлайну
-  margin-bottom: 60px;
+  justify-content: center; 
+  margin-bottom: 20px;
 }
 
 .timeline {
   position: relative;
   padding-left: 40px;
-  max-width: fit-content; // Щоб лінія була притиснута до тексту, а не літала збоку
+  max-width: fit-content; 
 }
 
 .mainLine {
@@ -53,7 +59,7 @@
   left: 0;
   top: 0;
   width: 1px;
-  background-color: rgba($text-main, 0.1);
+  background-color: rgba($text-main, 0.1); // Це напівпрозорий "трек", по якому повзе лінія
   z-index: 1;
 
   &::after {
@@ -63,7 +69,7 @@
     left: 0;
     width: 1px;
     height: 100%;
-    background-color: $accent-color;
+    background-color: $text-main; // ТЕПЕР КОЛІР ЯК У КУБИКІВ
   }
 }
 
@@ -104,32 +110,21 @@
   font-family: var(--font-body), sans-serif !important;
   font-size: 1.3rem;
   color: $text-main;
-  line-height: 1.3;
+  line-height: 1.4;
   font-weight: 500;
   letter-spacing: 0.05em;
-  text-transform: uppercase;
+  text-transform: none; // Прибрав uppercase, бо текст довгий, так легше читати
   transition: color 0.3s ease;
   text-align: left;
 }
 
-.footerNote {
-  font-family: var(--font-logo), sans-serif !important;
-  font-size: 1.4rem;
-  color: $text-main;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  text-align: center;
-  max-width: 600px;
-  margin-top: 10px;
-}
-
 @include respond-to(mobile) {
-  .sectionTitle {
-    font-size: 2.2rem;
+  .forWhom {
+    padding: 50px 20px;
   }
 
   .text {
-    font-size: 1.05rem;
+    font-size: 1.1rem;
   }
 
   .timeline {

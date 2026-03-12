@@ -2,7 +2,7 @@
 @use '../../styles/mixins' as *;
 
 .program {
-  padding: 30px 20px; // Збільшив відступи для більшого "повітря"
+  padding: 50px 20px; 
   background-color: $bg-color;
 }
 
@@ -13,22 +13,19 @@
 
 .sectionTitle {
   font-family: var(--font-logo), sans-serif !important;
-  font-weight: 100;
-  font-size: clamp(2.8rem, 10vw, 6.5rem);
+  font-weight: 700;
+  font-size: clamp(2.8rem, 10vw, 4.5rem); // Трохи зменшив верхню межу, щоб не було гігантським
   line-height: 1.1;
   text-transform: uppercase;
   letter-spacing: 0.02em;
-  color: $text-main; // Колір заголовка
+  color: $text-main; 
   max-width: 1000px;
-  margin: 0 auto 80px;
+  margin: 0 auto 50px;
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 .accordion {
-  border-top: 1px solid rgba($text-main, 0.3); // Трохи чіткіша лінія
+  border-top: 1px solid rgba($text-main, 0.3); 
 }
 
 .module {
@@ -37,7 +34,7 @@
   transition: all 0.3s ease;
 
   &:hover {
-    background-color: rgba($text-main, 0.03); // Використовуємо $text-main для ховера
+    background-color: rgba($text-main, 0.03); 
   }
 
   &.active {
@@ -53,34 +50,36 @@
 .header {
   display: flex;
   align-items: center;
-  padding: 35px 0;
+  padding: 30px 0;
   position: relative;
 }
 
 .number {
   font-family: var(--font-logo), sans-serif;
-  font-size: 1.1rem;
-  font-weight: 400; // Трохи додав ваги, щоб колір краще зчитувався
-  color: $text-main; // НОМЕРИ ТЕПЕР ЯК ОСНОВНИЙ ТЕКСТ
-  margin-right: 40px;
+  font-size: 1.2rem;
+  font-weight: 500; 
+  color: $text-main; /* ТЕПЕР КОЛІР ТЕКСТУ, А НЕ ПОМАРАНЧЕВИЙ */
+  margin-right: 30px;
   letter-spacing: 0.1em;
 }
 
 .title {
   font-family: var(--font-logo), sans-serif !important;
-  font-size: 1.5rem;
-  font-weight: 500;
+  font-size: 1.3rem;
+  font-weight: 600;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: $text-main; // НАЗВА МОДУЛЯ
+  color: $text-main; 
   flex: 1;
   padding-right: 20px;
+  line-height: 1.4;
 }
 
 .icon {
   width: 24px;
   height: 24px;
   position: relative;
+  flex-shrink: 0; // Щоб іконка не стискалася
 }
 
 .plusLine {
@@ -88,8 +87,8 @@
   top: 50%;
   left: 0;
   width: 100%;
-  height: 2px; // Зробив лінію трохи товстішою (2px замість 1px)
-  background-color: $text-main; // ІКОНКА ТЕПЕР ТАКОЖ В КОЛОРІ
+  height: 2px; 
+  background-color: $text-main; 
   transition: all 0.4s ease;
 
   &.vertical {
@@ -101,44 +100,111 @@
   overflow: hidden;
 }
 
-.description {
-  padding: 0 0 40px 10px; 
-  font-family: var(--font-logo), sans-serif !important; // Гарантуємо шрифт
-  font-size: 1.2rem;
-  
-  // Змінюємо вагу на 500, як у заголовка (.title)
-  font-weight: 500 !important; 
-  
-  line-height: 1.6;
-  
-  // Чітко вказуємо колір і прибираємо будь-яку прозорість
-  color: $text-main !important; 
-  opacity: 1 !important; 
-  
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-  max-width: 800px;
+/* ОНОВЛЕНО: Тепер це список з булітами */
+/* ОНОВЛЕНО: Тепер це список з булітами */
+.descriptionList {
+  list-style: none;
+  padding: 0 0 30px 50px; 
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  li {
+    font-family: var(--font-body), sans-serif !important; 
+    font-size: 1.2rem;
+    font-weight: 500; 
+    line-height: 1.5;
+    color: $text-main; 
+    position: relative;
+
+    &::before {
+      content: '•';
+      position: absolute;
+      left: -20px;
+      color: $text-main; /* ТЕПЕР КОЛІР ТЕКСТУ, А НЕ ПОМАРАНЧЕВИЙ */
+      font-weight: bold;
+    }
+  }
 
   @include respond-to(mobile) {
-    padding: 0 0 30px 0; 
-    font-size: 1rem;
-    // На мобілці теж тримаємо жирність
-    font-weight: 500 !important;
+    padding: 0 0 25px 0; 
+    
+    li {
+      font-size: 1rem;
+      padding-left: 15px;
+      
+      &::before {
+        left: 0;
+      }
+    }
+  }
+}
+
+/* --- НОВИЙ БЛОК: БОНУС --- */
+.bonusBlock {
+  background-color: $text-main;
+  color: $white;
+  padding: 40px;
+  border-radius: 20px;
+  margin-top: 60px;
+  box-shadow: 0 15px 40px rgba($text-main, 0.15);
+
+  .bonusTitle {
+    font-family: var(--font-logo), sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 0 0 25px 0;
+    color: $accent-color; // Зробили заголовок бонусу яскравим
+    text-align: center;
+  }
+
+  .bonusList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    li {
+      font-family: var(--font-body), sans-serif;
+      font-size: 1.2rem;
+      line-height: 1.5;
+      color: rgba($white, 0.9);
+      display: flex;
+      gap: 10px;
+    }
+
+    .accentNum {
+      color: $accent-color;
+      font-weight: bold;
+    }
+  }
+
+  @include respond-to(mobile) {
+    padding: 30px 20px;
+    margin-top: 40px;
+
+    .bonusTitle {
+      font-size: 1.3rem;
+      text-align: left;
+    }
+
+    .bonusList li {
+      font-size: 1.1rem;
+    }
   }
 }
 
 /* АДАПТАЦІЯ */
 @include respond-to(mobile) {
   .program { padding: 40px 15px; }
-  .header { padding: 25px 0; }
+  .header { padding: 20px 0; }
   .number { 
-    margin-right: 20px;
-    font-size: 0.9rem;
+    margin-right: 15px;
+    font-size: 1rem;
   }
   .title { font-size: 1.1rem; }
-  .description { 
-    padding: 0 0 30px 0; 
-    font-size: 1rem;
-    text-align: left;
-  }
 }

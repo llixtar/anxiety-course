@@ -2,12 +2,12 @@
 @use '../../styles/mixins' as *;
 
 .hero {
-  padding: 10px 20px 10px;
+  padding: 40px 20px;
   position: relative;
   overflow: hidden;
   display: flex;
   justify-content: center;
-  background-color: $bg-color;
+  background-color: $bg-color; 
 }
 
 .container {
@@ -22,20 +22,27 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 20px; // Трохи зменшив загальний gap, щоб керувати відступами всередині блоків
+  gap: 15px;
 }
 
 .title {
   font-family: var(--font-logo), sans-serif !important;
-  font-weight: 100;
-  font-size: clamp(2.8rem, 10vw, 6.5rem);
+  font-weight: 700;
+  font-size: clamp(2.2rem, 6vw, 4.5rem); 
   line-height: 1.1;
   text-transform: uppercase;
-  letter-spacing: 0.02em;
-  color: $text-main;
+  color: $text-main; 
   max-width: 1000px;
   margin: 0;
-  width: 100%;
+}
+
+.subtitle {
+  font-family: var(--font-body), sans-serif !important;
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  font-weight: 400;
+  color: $text-muted;
+  margin: 0 0 20px 0;
+  font-style: italic;
 }
 
 .mainContent {
@@ -45,52 +52,28 @@
   align-items: center;
 }
 
-/* НОВІ СТИЛІ ДЛЯ СЕРЕДНЬОГО РЯДУ (Текст зліва, Картинка справа) */
+/* СЕРЕДНІЙ РЯД: Текст і Картинка */
 .middleRow {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  max-width: 800px; // Змінили з 1000px на 800px (як у кнопки)
+  max-width: 900px;
   gap: 40px;
-  margin: 20px auto 40px; // Додали auto, щоб блок чітко стояв по центру
+  margin: 0 auto 30px;
 
   @include respond-to(mobile) {
-    flex-direction: column;
-    gap: 25px;
-    margin: 15px auto 30px;
+    flex-direction: column-reverse; /* НА МОБІЛЦІ: Картинка зверху, Текст знизу */
+    gap: 20px;
   }
 }
 
-
-.reverseRow {
-  // На десктопі перевертаємо ряд: елементи стають задом наперед (Картинка - Текст)
-  flex-direction: row-reverse; 
-  margin-top: 50px; 
-
-  @include respond-to(mobile) {
-    // На мобільці повертаємо звичайну колонку (Текст - Картинка)
-    flex-direction: column; 
-    margin-top: 30px;
-  }
-
-  .textContent {
-    padding-right: 0; // Скидаємо стандартний відступ справа
-    padding-left: 20px; // Робимо відступ зліва (від картинки)
-
-    @include respond-to(mobile) {
-      padding-left: 0; // На мобільці відступи між ними не потрібні
-    }
-  }
-}
 .textContent {
   flex: 1;
   text-align: left;
-  padding-right: 20px; // Додали відступ від картинки на десктопі
 
   @include respond-to(mobile) {
     text-align: center;
-    padding-right: 0; // На мобільці прибираємо, бо вони одне під одним
   }
 }
 
@@ -104,7 +87,7 @@
 .heroImg {
   max-width: 100%;
   height: auto;
-  max-height: 350px; // Обмеження висоти, щоб картинка не була гігантською
+  max-height: 350px;
   object-fit: contain;
 
   @include respond-to(mobile) {
@@ -114,51 +97,118 @@
 
 .description {
   font-family: var(--font-body), sans-serif !important;
-  font-size: 1.5rem; // Трохи збільшив, бо тексту мало
+  font-size: 1.2rem;
   color: $text-main;
-  line-height: 1.4;
-  font-weight: 400;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  line-height: 1.5;
+  font-weight: 500;
   margin: 0;
 
   @include respond-to(mobile) {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 }
 
-.highlight {
-  font-weight: 300;
-  color: $accent-color;
-  letter-spacing: 0.08em;
+/* ТЕКСТ ПЕРЕД ПЛАШКОЮ */
+.prePriceText {
+  font-family: var(--font-body), sans-serif !important;
+  font-size: 1.1rem;
+  color: $text-main;
+  font-weight: 600;
+  margin: 15px 0;
+  text-align: center;
 }
 
-.actions {
+/* ТЕМНА ПЛАШКА З ЦІНОЮ */
+.priceBlock {
+  background-color: $text-main; 
+  color: $white;
+  padding: 25px 30px; 
+  border-radius: 15px; 
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  gap: 12px;
   width: 100%;
-  max-width: 800px; // Трохи розширив, щоб кнопка була дійсно масивною
-  margin-left: auto;
-  margin-right: auto;
+  max-width: 500px; 
+  margin: 10px auto;
+  text-align: left;
+  box-shadow: 0 10px 30px rgba($text-main, 0.2);
+
+  .priceRow {
+    font-size: 1.1rem;
+    font-family: var(--font-body), sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    
+    .bullet { color: $accent-color; font-weight: bold; }
+  }
+
+  .oldPrice {
+    text-decoration: line-through;
+    opacity: 0.6;
+  }
+
+  .newPrice {
+    font-weight: bold;
+    font-size: 1.3rem;
+    color: $accent-color; 
+  }
+
+  .timerRow {
+    margin-top: 10px;
+    padding-top: 15px;
+    border-top: 1px dashed rgba($white, 0.2);
+    text-align: center;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+
+    .timerDigits {
+      font-family: monospace;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: $accent-color;
+      margin-left: 10px;
+    }
+  }
+
+  /* ТЕКСТ ПЕРЕД КНОПКОЮ (всередині плашки) */
+  .preButtonText {
+    font-family: var(--font-body), sans-serif !important;
+    font-size: 1rem;
+    color: rgba($white, 0.9); 
+    font-weight: 400;
+    margin: 15px 0 5px; 
+    text-align: center;
+    font-style: italic;
+  }
+
+  .actions {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 5px auto 0;
+  }
 }
 
+/* КНОПКА (Кругла, пульсуюча, зі світлячком) */
 .primaryBtn {
   position: relative;
   z-index: 1;
   overflow: hidden;
   width: 100%;
-  padding: 18px 20px;
-  background-color: $accent-color !important;
-  color: $white !important;
+  padding: 20px 30px;
+  background-color: $accent-hover !important; /* ТЕПЕР ОДРАЗУ НАСИЧЕНИЙ */
   border: none !important;
-  border-radius: 0 !important;
+  border-radius: 50px !important; 
   cursor: pointer;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  gap: 10px;
+  align-items: center;
+  animation: pulseBtn 2.5s infinite ease-in-out; 
+  transition: transform 0.3s ease;
 
+  /* Світлячок на фоні */
   &::before {
     content: '';
     position: absolute;
@@ -167,10 +217,11 @@
     top: -50%;
     width: 200%;
     height: 200%;
-    background: conic-gradient(transparent, transparent, rgba(255, 255, 255, 0.4) 10%, rgba(255, 255, 255, 0.9) 25%, white 30%, rgba(255, 255, 255, 0.4) 45%, transparent 50%);
+    background: conic-gradient(transparent, transparent, rgba(255, 255, 255, 0.5) 10%, rgba(255, 255, 255, 0.9) 25%, white 30%, rgba(255, 255, 255, 0.5) 45%, transparent 50%);
     animation: fireflyRotate 3s linear infinite;
   }
 
+  /* Внутрішнє тіло кнопки */
   &::after {
     content: '';
     position: absolute;
@@ -179,106 +230,44 @@
     top: 4px;
     width: calc(100% - 8px);
     height: calc(100% - 8px);
-    background-color: $accent-color;
-    border-radius: 0;
+    background-color: $accent-hover; /* ТЕПЕР ОДРАЗУ НАСИЧЕНИЙ */
+    border-radius: 50px; 
+    transition: background-color 0.3s ease;
   }
 
   &:hover {
-    transform: scale(1.02);
+    animation-play-state: paused; 
+    transform: scale(1.05); 
 
     &::after {
-      background-color: $accent-hover;
+      background-color: darken(#F2A88B, 15%); /* Робимо ще трооошки глибшим при наведенні */
     }
   }
 
   .btnMainText {
     font-family: var(--font-body), sans-serif;
-    font-size: 1.3rem;
-    font-weight: 500;
+    font-size: 1.1rem;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px;
+    letter-spacing: 0.05em;
     color: $white !important;
+    text-align: center;
 
     @include respond-to(mobile) {
-      font-size: 0.9rem;
-    }
-  }
-
-  .oldPrice {
-    text-decoration: line-through;
-    opacity: 0.6;
-    font-size: 0.9em;
-  }
-
-  .newPrice {
-    color: $white;
-    font-size: 1.1em;
-  }
-
-  .btnSubText {
-    font-family: var(--font-body), sans-serif !important;
-    font-size: 1.3rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-
-    @include respond-to(mobile) {
-      font-size: 0.8rem;
-    }
-  }
-
-  .timerDigits {
-    font-family: monospace;
-    font-size: 1.3rem;
-    font-weight: bold;
-    color: $white;
-  }
-
-  @include respond-to(mobile) {
-    padding: 14px 15px; // Трохи зменшуємо паддінги кнопки для мобілки
-  }
-}
-
-.bottomDescription {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  width: 100%;
-  max-width: 400px; // Ширина пів кнопки
-  margin: 40px auto 0; // По центру екрана
-  
-  p {
-    font-family: var(--font-body), sans-serif !important;
-    font-size: 1.5rem; 
-    color: $text-main;
-    line-height: 1.4;
-    font-weight: 400;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    margin: 0;
-    text-align: center; // Строго по центру
-
-    @include respond-to(mobile) {
-      font-size: 1.2rem;
-      max-width: 100%; 
-      padding: 0 10px;
+      font-size: 1rem;
     }
   }
 }
 
+/* АНІМАЦІЇ */
 @keyframes fireflyRotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulseBtn {
+  /* Пульсуючу тінь теж зробили насиченого кольору */
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba($accent-hover, 0.6); }
+  50% { transform: scale(1.02); box-shadow: 0 0 20px 5px rgba($accent-hover, 0.3); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba($accent-hover, 0); }
 }

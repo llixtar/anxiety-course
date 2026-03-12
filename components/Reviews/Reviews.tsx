@@ -12,6 +12,8 @@ const reviewsData = [
   '/reviews/1.jpg', 
   '/reviews/2.jpg',
   '/reviews/3.jpg',
+  '/reviews/4.jpg',
+  '/reviews/5.jpg',
 ];
 
 export default function Reviews() {
