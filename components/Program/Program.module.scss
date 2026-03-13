@@ -22,6 +22,10 @@
   max-width: 1000px;
   margin: 0 auto 50px;
   text-align: center;
+
+  @include respond-to(mobile) {
+    font-size: 1.5rem; // Трохи зменшили для економії рядка
+  }
 }
 
 .accordion {
@@ -73,6 +77,8 @@
   flex: 1;
   padding-right: 20px;
   line-height: 1.4;
+
+ 
 }
 
 .icon {

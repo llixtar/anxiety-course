@@ -2,7 +2,7 @@
 @use '../../styles/mixins' as *;
 
 .hero {
-  padding: 40px 20px;
+  padding: 0px 20px;
   position: relative;
   overflow: hidden;
   display: flex;
@@ -10,7 +10,10 @@
   background-color: $bg-color; 
 
   @include respond-to(mobile) {
-    padding: 20px 15px; // Ущільнили відступи екрана
+    /* 50px - це висота нашого хедера. 
+       Тобто заголовок почнеться ІДЕАЛЬНО під хедером без пробілів.
+       Якщо текст буде залазити під хедер, збільш 50 до 55 або 60. */
+    padding: 1px 15px 15px; 
   }
 }
 
@@ -44,7 +47,7 @@
   margin: 0;
 
   @include respond-to(mobile) {
-    font-size: 2rem; // Трохи зменшили для економії рядка
+    font-size: 1.5rem; // Трохи зменшили для економії рядка
   }
 }
 

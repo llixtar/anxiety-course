@@ -27,6 +27,10 @@
   margin: 0 0 15px 0; // Зменшили відступ, бо є підзаголовок
   width: 100%;
   text-align: center;
+
+  @include respond-to(mobile) {
+    font-size: 1.5rem; // Трохи зменшили для економії рядка
+  }
 }
 
 .subtitle {

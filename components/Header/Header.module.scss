@@ -14,6 +14,13 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
   padding: 12px 0;
   pointer-events: auto;
+
+  /* ДОДАЄМО ОСЬ ЦЕ: */
+  @include respond-to(mobile) {
+    top: 5px; /* Притискаємо до верхнього краю екрана */
+    padding: 8px 0; /* Робимо капсулу трохи тоншою */
+    width: calc(100% - 20px); /* Можеш ще розширити його на мобілці, щоб зекономити рядок для лого */
+  }
 }
 
 .container {

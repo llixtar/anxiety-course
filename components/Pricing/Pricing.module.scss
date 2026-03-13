@@ -21,6 +21,10 @@
   max-width: 1000px;
   text-align: center;
   margin-bottom: 60px;
+
+  @include respond-to(mobile) {
+    font-size: 1.5rem; // Трохи зменшили для економії рядка
+  }
 }
 
 .grid {

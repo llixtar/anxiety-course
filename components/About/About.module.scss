@@ -28,6 +28,10 @@
     margin: 0 0 20px 0; // Зменшив відступ знизу
     width: 100%;
     text-align: center;
+
+    @include respond-to(mobile) {
+    font-size: 1.5rem; // Трохи зменшили для економії рядка
+  }
 }
 
 // УНІВЕРСАЛЬНИЙ СТИЛЬ ТЕКСТУ
@@ -60,7 +64,7 @@
         margin-bottom: 15px;
 
         @include respond-to(mobile) {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
         }
     }
 
