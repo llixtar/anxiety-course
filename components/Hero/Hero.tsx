@@ -7,7 +7,7 @@ import { DISCOUNT_PERCENT, PRICE_BASIC } from '@/lib/constants';
 
 export default function Hero() {
   const [timeLeft, setTimeLeft] = useState(600); 
-  const newBasicPrice = Math.round(PRICE_BASIC * (1 - DISCOUNT_PERCENT / 100));
+  const newBasicPrice = Math.round((PRICE_BASIC * (1 - DISCOUNT_PERCENT / 100))-1);
 
   useEffect(() => {
     if (timeLeft <= 0) return;
@@ -43,7 +43,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.8 }}
           >
-            Досить прокручувати в голові найгірші сценарії...
+            {/* Досить прокручувати в голові найгірші сценарії... */}
           </motion.h2>
 
           <motion.div
@@ -56,7 +56,8 @@ export default function Hero() {
             <div className={styles.middleRow}>
               <div className={styles.textContent}>
                 <p className={styles.description}>
-                  Практичний інтенсив за ціною однієї сесії з психологом. Отримайте покроковий алгоритм з 4-х кроків, щоб зупинити тривожні думки та прибрати постійну напругу в тілі вже сьогодні.
+                  {/* Практичний інтенсив за ціною однієї сесії з психологом. Отримайте покроковий алгоритм з 4-х кроків, щоб зупинити тривожні думки та прибрати постійну напругу в тілі вже сьогодні. */}
+                  Отримайте покроковий алгоритм із 4 кроків від практикуючого психолога, щоб зупинити тривожні думки вже сьогодні. 
                 </p>
               </div>
 
@@ -67,16 +68,26 @@ export default function Hero() {
 
             {/* 4. Текст перед плашкою */}
             <p className={styles.prePriceText}>
-              Ваш спокій коштує менше, ніж вечеря в кафе:
+              {/* Ваш спокій коштує менше, ніж вечеря в кафе: */}
+              Менше, ніж одна сесія з психологом - інструменти, які залишаться з вами назавжди.
             </p>
 
             {/* 5. Темна плашка з цінами, таймером, текстом та кнопкою */}
             <div className={styles.priceBlock}>
-              <div className={styles.priceRow}>
-                <span className={styles.bullet}>•</span> Стара ціна: <span className={styles.oldPrice}>{PRICE_BASIC} грн</span>
-              </div>
-              <div className={styles.priceRow}>
-                <span className={styles.bullet}>•</span> Ціна сьогодні: <span className={styles.newPrice}>{newBasicPrice} грн</span>
+              
+              {/* НОВИЙ БЛОК ЦІН (В РЯДОК) */}
+              <div className={styles.pricesHorizontal}>
+                <div className={styles.priceCol}>
+                  <span className={styles.priceLabel}>Стара ціна:</span>
+                  <span className={styles.oldPrice}>{PRICE_BASIC} грн</span>
+                </div>
+                
+                <div className={styles.priceDivider}></div>
+                
+                <div className={styles.priceCol}>
+                  <span className={styles.priceLabel}>Ціна сьогодні:</span>
+                  <span className={styles.newPrice}>{newBasicPrice} грн</span>
+                </div>
               </div>
               
               <div className={styles.timerRow}>
@@ -84,9 +95,9 @@ export default function Hero() {
               </div>
 
               {/* 6. Текст перед кнопкою */}
-              <p className={styles.preButtonText}>
+              {/* <p className={styles.preButtonText}>
                 Заберіть свій квиток у спокійне життя, поки діє акція:
-              </p>
+              </p> */}
 
               {/* 7. Кругла пульсуюча кнопка */}
               <div className={styles.actions}>

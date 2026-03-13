@@ -8,6 +8,10 @@
   display: flex;
   justify-content: center;
   background-color: $bg-color; 
+
+  @include respond-to(mobile) {
+    padding: 20px 15px; // Ущільнили відступи екрана
+  }
 }
 
 .container {
@@ -23,6 +27,10 @@
   align-items: center;
   text-align: center;
   gap: 15px;
+
+  @include respond-to(mobile) {
+    gap: 10px; // Зменшили щілини між блоками
+  }
 }
 
 .title {
@@ -34,6 +42,10 @@
   color: $text-main; 
   max-width: 1000px;
   margin: 0;
+
+  @include respond-to(mobile) {
+    font-size: 2rem; // Трохи зменшили для економії рядка
+  }
 }
 
 .subtitle {
@@ -43,6 +55,10 @@
   color: $text-muted;
   margin: 0 0 20px 0;
   font-style: italic;
+
+  @include respond-to(mobile) {
+    margin: 0 0 10px 0;
+  }
 }
 
 .mainContent {
@@ -60,11 +76,12 @@
   width: 100%;
   max-width: 900px;
   gap: 40px;
-  margin: 0 auto 30px;
+  margin: 0 auto; // ТЕПЕР ПОВНІСТЮ ПРИБРАНО ВІДСТУП ЗНИЗУ! (БУЛО margin: 0 auto 30px;)
 
   @include respond-to(mobile) {
-    flex-direction: column-reverse; /* НА МОБІЛЦІ: Картинка зверху, Текст знизу */
-    gap: 20px;
+    flex-direction: column-reverse; 
+    gap: 15px; // Зменшили дірку між картинкою і текстом
+    margin: 0 auto 15px;
   }
 }
 
@@ -87,11 +104,11 @@
 .heroImg {
   max-width: 100%;
   height: auto;
-  max-height: 350px;
+  max-height: 280px; // ЗМЕНШИЛИ КАРТИНКУ НА ДЕСКТОПІ! (БУЛО 350px)
   object-fit: contain;
 
   @include respond-to(mobile) {
-    max-height: 250px;
+    max-height: 180px; // СУТТЄВО ЗМЕНШИЛИ КАРТИНКУ
   }
 }
 
@@ -104,7 +121,8 @@
   margin: 0;
 
   @include respond-to(mobile) {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
+    line-height: 1.35;
   }
 }
 
@@ -114,8 +132,13 @@
   font-size: 1.1rem;
   color: $text-main;
   font-weight: 600;
-  margin: 15px 0;
+  margin: 0 0 10px; // ТЕПЕР ПОВНІСТЮ ПРИБРАНО ВІДСТУП ЗВЕРХУ! (БУЛО margin: 15px 0;)
   text-align: center;
+
+  @include respond-to(mobile) {
+    margin: 5px 0 10px;
+    font-size: 1rem;
+  }
 }
 
 /* ТЕМНА ПЛАШКА З ЦІНОЮ */
@@ -133,29 +156,75 @@
   text-align: left;
   box-shadow: 0 10px 30px rgba($text-main, 0.2);
 
-  .priceRow {
-    font-size: 1.1rem;
-    font-family: var(--font-body), sans-serif;
+  @include respond-to(mobile) {
+    padding: 15px 20px; // Зменшили відступи всередині плашки
+    gap: 10px;
+    margin: 0 auto;
+  }
+
+  /* === ОНОВЛЕНО: ЦІНИ В РЯДОК === */
+  .pricesHorizontal {
     display: flex;
+    justify-content: space-around;
     align-items: center;
-    gap: 8px;
-    
-    .bullet { color: $accent-color; font-weight: bold; }
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 10px;
+
+    @include respond-to(mobile) {
+      padding: 8px;
+    }
+  }
+
+  .priceCol {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+  }
+
+  .priceLabel {
+    font-family: var(--font-body), sans-serif;
+    font-size: 0.9rem;
+    opacity: 0.8;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+
+    @include respond-to(mobile) {
+      font-size: 0.75rem;
+    }
   }
 
   .oldPrice {
     text-decoration: line-through;
     opacity: 0.6;
+    font-size: 1.1rem;
+
+    @include respond-to(mobile) {
+      font-size: 1rem;
+    }
   }
 
   .newPrice {
     font-weight: bold;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     color: $accent-color; 
+
+    @include respond-to(mobile) {
+      font-size: 1.3rem;
+    }
   }
 
+  .priceDivider {
+    width: 1px;
+    height: 40px;
+    background-color: rgba($white, 0.2);
+  }
+  /* =============================== */
+
   .timerRow {
-    margin-top: 10px;
+    margin-top: 5px; // Зменшено
     padding-top: 15px;
     border-top: 1px dashed rgba($white, 0.2);
     text-align: center;
@@ -170,17 +239,12 @@
       color: $accent-color;
       margin-left: 10px;
     }
-  }
 
-  /* ТЕКСТ ПЕРЕД КНОПКОЮ (всередині плашки) */
-  .preButtonText {
-    font-family: var(--font-body), sans-serif !important;
-    font-size: 1rem;
-    color: rgba($white, 0.9); 
-    font-weight: 400;
-    margin: 15px 0 5px; 
-    text-align: center;
-    font-style: italic;
+    @include respond-to(mobile) {
+      padding-top: 10px;
+      font-size: 1rem;
+      .timerDigits { font-size: 1.3rem; }
+    }
   }
 
   .actions {
@@ -207,6 +271,10 @@
   align-items: center;
   animation: pulseBtn 2.5s infinite ease-in-out; 
   transition: transform 0.3s ease;
+
+  @include respond-to(mobile) {
+    padding: 15px 20px; // Трошки "схудла" кнопка
+  }
 
   /* Світлячок на фоні */
   &::before {
@@ -254,7 +322,7 @@
     text-align: center;
 
     @include respond-to(mobile) {
-      font-size: 1rem;
+      font-size: 0.95rem;
     }
   }
 }
